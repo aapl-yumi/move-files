@@ -3,7 +3,7 @@
   "name": "move-files",
   "title": "Move Files",
   "description": "Move selected files to pre-determined directories",
-  "icon": "command-icon.png",
+  "icon": "icon.png",
   "author": "AppleYumi",
   "owner": "yumi",
   "categories": [
@@ -11,16 +11,86 @@
     "System"
   ],
   "license": "MIT",
+  "preferences": [
+    {
+      "name": "directory_one",
+      "title": "Directory 1",
+      "description": "Directory 1 to move files to",
+      "type": "directory",
+      "required": false
+    },
+    {
+      "name": "directory_two",
+      "title": "Directory 2",
+      "description": "Directory 2 to move files to",
+      "type": "directory",
+      "required": false
+    },
+    {
+      "name": "directory_three",
+      "title": "Directory 3",
+      "description": "Directory 3 to move files to",
+      "type": "directory",
+      "required": false
+    }
+  ],
   "commands": [
     {
-      "name": "index",
-      "title": "Show List and Detail",
-      "description": "Template for showing a static list and a detail view",
+      "name": "move_selected_list",
+      "title": "Move Selected Files",
+      "description": "Move selected files to pre-determined directories",
+      "icon": "icon.png",
       "mode": "view"
+    },
+    {
+      "name": "add_destination",
+      "title": "Add New Destination Directory",
+      "description": "Add a directory to move files to",
+      "icon": "icon.png",
+      "mode": "view"
+    },
+    {
+      "name": "move_selected_arbitrary",
+      "title": "Move Selected Files to",
+      "description": "Move selected files to a directory of your choice",
+      "icon": "icon.png",
+      "mode": "no-view",
+      "arguments": [
+        {
+          "name": "destination",
+          "type": "text",
+          "placeholder": "Directory",
+          "description": "The directory to move files to",
+          "required": true
+        }
+      ]
+    },
+    {
+      "name": "move_selected_one",
+      "title": "Move to Directory 1",
+      "description": "Move selected files to directory 1",
+      "icon": "icon.png",
+      "mode": "no-view"
+    },
+    {
+      "name": "move_selected_two",
+      "title": "Move to Directory 2",
+      "description": "Move selected files to directory 2",
+      "icon": "icon.png",
+      "mode": "no-view"
+    },
+    {
+      "name": "move_selected_three",
+      "title": "Move to Directory 3",
+      "description": "Move selected files to directory 3",
+      "icon": "icon.png",
+      "mode": "no-view"
     }
   ],
   "dependencies": {
-    "@raycast/api": "^1.55.2"
+    "@raycast/api": "^1.55.2",
+    "jotai": "^2.2.2",
+    "run-applescript": "^6.1.0"
   },
   "devDependencies": {
     "@raycast/eslint-config": "1.0.5",
@@ -28,7 +98,8 @@
     "@types/react": "18.0.9",
     "eslint": "^7.32.0",
     "prettier": "^2.5.1",
-    "typescript": "^4.4.3"
+    "typescript": "^4.4.3",
+    "zod": "^3.21.4"
   },
   "scripts": {
     "build": "ray build -e dist",
