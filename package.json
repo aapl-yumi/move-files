@@ -25,13 +25,6 @@
       "description": "Directory 2 to move files to",
       "type": "directory",
       "required": false
-    },
-    {
-      "name": "directory_three",
-      "title": "Directory 3",
-      "description": "Directory 3 to move files to",
-      "type": "directory",
-      "required": false
     }
   ],
   "commands": [
@@ -76,13 +69,6 @@
       "name": "move_selected_two",
       "title": "Move to Directory 2",
       "description": "Move selected files to directory 2",
-      "icon": "icon.png",
-      "mode": "no-view"
-    },
-    {
-      "name": "move_selected_three",
-      "title": "Move to Directory 3",
-      "description": "Move selected files to directory 3",
       "icon": "icon.png",
       "mode": "no-view"
     }
