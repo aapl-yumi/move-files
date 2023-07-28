@@ -4,6 +4,7 @@ import { atom } from "jotai";
 import { environment } from "@raycast/api";
 
 import { Destination, DestinationSchema } from "./types";
+import { stringOrStringArrayIsEmpty } from "./utils";
 
 const DESTINATION_FILE = `${environment.supportPath}/atom.json`;
 
@@ -27,6 +28,10 @@ export const destinationsAtom = atom(
     update.forEach((d) => {
       console.info("Validating destination", d);
       if (!DestinationSchema.safeParse(d).success) {
+        if (stringOrStringArrayIsEmpty(d.destination)) {
+          console.error("Destination is empty", d);
+          throw new Error("Destination is empty");
+        }
         console.error("Invalid destination", d);
         throw new Error("Invalid destination");
       }

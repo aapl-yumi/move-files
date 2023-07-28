@@ -14,10 +14,10 @@ export default function Command() {
         <List.Item
           key={destination.id}
           title={destination.title}
-          icon={Icon.Folder}
           accessories={[
             {
               text: `${destination.destination}`,
+              icon: Icon.Folder,
             },
           ]}
           actions={

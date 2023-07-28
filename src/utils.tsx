@@ -82,6 +82,7 @@ export const stringOrStringArrayIsEmpty = (value: string | string[] | undefined)
   if (typeof value === "string") {
     return stringIsEmpty(value);
   }
+  return value.every((item) => stringIsEmpty(item));
 };
 
 export const arrayOfStringsOrStringArraysIsEmpty = (value: (string | string[] | undefined)[] | undefined) => {

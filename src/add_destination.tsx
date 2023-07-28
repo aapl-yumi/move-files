@@ -45,6 +45,10 @@ export default function Command() {
     title: undefined,
   });
 
+  useEffect(() => {
+    console.log(formData);
+  }, [formData]);
+
   const addDestination = async () => {
     const existingDestination = destinations.find((destination) => destination.id == formData.id);
     if (existingDestination) {
@@ -102,18 +106,23 @@ export default function Command() {
           const file = files[0];
           if (file) {
             setError({ ...error, directory: undefined });
-            if (formData.title.length > 0) {
-              setFormData({
-                ...formData,
-                destination: file,
-              });
-            } else {
-              setFormData({
-                ...formData,
-                title: file.split("/").at(-1) || "",
-              });
+            if (formData.title.length == 0) {
+              const newTitle = file.split("/").at(-1);
+              if (newTitle) {
+                setError({ ...error, title: undefined });
+                setFormData({
+                  ...formData,
+                  destination: file,
+                  title: newTitle,
+                });
+                return;
+              }
             }
           }
+          setFormData({
+            ...formData,
+            destination: file,
+          });
         }}
         onBlur={(e) => {
           if (e.target.value?.length == 0) {
